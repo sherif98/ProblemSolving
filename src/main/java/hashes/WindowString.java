@@ -18,10 +18,14 @@ public class WindowString {
 
 
     public String minWindow(String s, String t) {
-        Map<Character, Integer> needed = new HashMap<>();
-        for (char c : t.toCharArray()) {
-            needed.merge(c, 1, Integer::sum);
-        }
+//        Map<Character, Integer> needed = new HashMap<>();
+//        for (char c : t.toCharArray()) {
+//            needed.merge(c, 1, Integer::sum);
+//        }
+        Map<Character, Long> needed = t.chars()
+                .mapToObj(n -> (char) n)
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
         Map<Character, Integer> have = new HashMap<>();
         int lo = 0;
         int hi = 0;
@@ -57,9 +61,9 @@ public class WindowString {
         return s.substring(start, start + min);
     }
 
-    private boolean haveEnoughCharacter(Map<Character, Integer> needed, Map<Character, Integer> have) {
+    private boolean haveEnoughCharacter(Map<Character, Long> needed, Map<Character, Integer> have) {
         boolean ret = true;
-        for (Map.Entry<Character, Integer> entry : needed.entrySet()) {
+        for (Map.Entry<Character, Long> entry : needed.entrySet()) {
             if (!have.containsKey(entry.getKey())) {
                 return false;
             }
