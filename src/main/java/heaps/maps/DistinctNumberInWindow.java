@@ -3,7 +3,6 @@ package heaps.maps;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 public class DistinctNumberInWindow {
 
@@ -26,7 +25,6 @@ public class DistinctNumberInWindow {
                 map.remove(nums.get(lo));
             }
         }
-        int x = map.values().stream().reduce(Integer::sum).orElse(0);
         return ret;
     }
 }
