@@ -1,5 +1,7 @@
 package dp;
 
+import java.util.Arrays;
+
 public class EditDistance {
 
     public int minDistance(String a, String b) {
